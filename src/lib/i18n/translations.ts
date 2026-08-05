@@ -45,6 +45,7 @@ export interface Translation {
   };
   footer: {
     text: string;
+    poweredBy: string;
   };
   language: {
     en: string;
@@ -105,6 +106,7 @@ export const translations: Record<Locale, Translation> = {
     },
     footer: {
       text: "Leaax is an independent security check. Not affiliated with OpenAI, Anthropic, Google, xAI, or DeepSeek.",
+      poweredBy: "Search powered by Brave Search API.",
     },
     language: { en: "English", de: "Deutsch" },
   },
@@ -160,6 +162,7 @@ export const translations: Record<Locale, Translation> = {
     },
     footer: {
       text: "Leaax ist ein unabhängiges Sicherheits-Tool. Nicht verbunden mit OpenAI, Anthropic, Google, xAI oder DeepSeek.",
+      poweredBy: "Suche unterstützt durch die Brave Search API.",
     },
     language: { en: "English", de: "Deutsch" },
   },

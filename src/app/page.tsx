@@ -44,7 +44,19 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="px-6 py-6 text-center text-xs text-foreground-muted sm:px-10">{t.footer.text}</footer>
+      <footer className="flex flex-col items-center gap-1 px-6 py-6 text-center text-xs text-foreground-muted sm:px-10">
+        <p>{t.footer.text}</p>
+        <p>
+          <a
+            href="https://brave.com/search/api/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-foreground hover:underline"
+          >
+            {t.footer.poweredBy}
+          </a>
+        </p>
+      </footer>
     </div>
   );
 }
