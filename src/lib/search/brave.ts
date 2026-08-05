@@ -9,8 +9,21 @@ interface BraveApiResult {
 }
 
 interface BraveApiResponse {
+  // On a 2xx response, Brave omits `web` entirely when a query (correctly
+  // formed or not) produces zero results — that's its normal "nothing
+  // found" shape, not an error, so this must stay optional and must NOT
+  // be treated as a failure signal.
   web?: {
     results?: BraveApiResult[];
+  };
+  // Brave returns this shape for actual errors (e.g. quota/plan issues)
+  // while still using a 2xx-ish status in some cases — this, unlike a
+  // missing `web`, is a real hard failure.
+  error?: {
+    id?: string;
+    status?: number;
+    code?: string;
+    detail?: string;
   };
 }
 
@@ -41,10 +54,22 @@ export function createBraveSearchProvider(apiKey: string): WebSearchProvider {
       });
 
       if (!response.ok) {
-        throw new Error(`Brave Search API error: ${response.status}`);
+        throw new Error(`Brave Search API error: HTTP ${response.status}`);
       }
 
       const data = (await response.json()) as BraveApiResponse;
+
+      // A 2xx response can still carry an error payload (e.g. quota/plan
+      // issues) — that's a real failure and must not be misread as "zero
+      // results" (which would show the user a false green light).
+      if (data.error) {
+        throw new Error(
+          `Brave Search API returned an error payload: ${data.error.code ?? data.error.status ?? "unknown"}`,
+        );
+      }
+
+      // `web` being absent here is Brave's normal shape for a genuine
+      // zero-result query, not an error — see BraveApiResponse above.
       const results = data.web?.results ?? [];
 
       return results

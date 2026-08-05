@@ -52,11 +52,20 @@ export const AI_SHARE_PROVIDERS: AiShareProvider[] = [
   },
 ];
 
-/** Builds a search-engine `site:` filter clause covering all providers. */
-export function buildSiteFilter(providers: AiShareProvider[] = AI_SHARE_PROVIDERS): string {
-  return providers
-    .map((p) => `site:${p.domain} inurl:${p.pathPrefix}`)
-    .join(" OR ");
+/**
+ * Builds a single-provider search query.
+ *
+ * Deliberately one `site:` filter per request, not an OR-combination of
+ * several — Brave Search only reliably applies `site:` when there's
+ * exactly one in the query; combined with OR it silently returns no
+ * results at all (flagged internally by Brave as `bad_results: true`),
+ * which would show a false "nothing found" for every check. Likewise,
+ * Google-style `inurl:` isn't a Brave operator — the path belongs in the
+ * `site:` value itself (`site:example.com/path/`), not as a separate
+ * clause.
+ */
+export function buildProviderQuery(query: string, provider: AiShareProvider): string {
+  return `"${query}" site:${provider.domain}${provider.pathPrefix}`;
 }
 
 /** Finds which configured provider a given result URL belongs to, if any. */

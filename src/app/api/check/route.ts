@@ -58,13 +58,19 @@ export async function POST(request: NextRequest) {
       event: "check_completed",
       status: result.status,
       hitCount: result.totalHits,
+      rawResultCount: result.rawResultCount,
       durationMs: Date.now() - startedAt,
     });
 
-    return NextResponse.json(result, {
-      status: 200,
-      headers: { "Cache-Control": "no-store" },
-    });
+    // rawResultCount is diagnostics-only (see CheckResult) — the client
+    // only ever gets the traffic-light status and the masked hits.
+    return NextResponse.json(
+      { status: result.status, hits: result.hits, totalHits: result.totalHits },
+      {
+        status: 200,
+        headers: { "Cache-Control": "no-store" },
+      },
+    );
   } catch (error) {
     if (error instanceof SearchProviderNotConfiguredError) {
       logCheckEvent({ event: "check_failed", reason: "provider_not_configured" });

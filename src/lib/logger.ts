@@ -10,6 +10,7 @@ type CheckEvent = {
   event: "check_requested" | "check_completed" | "check_rejected" | "check_failed";
   status?: "green" | "yellow" | "red";
   hitCount?: number;
+  rawResultCount?: number;
   reason?: string;
   durationMs?: number;
 };
