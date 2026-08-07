@@ -51,6 +51,14 @@ export interface Translation {
     en: string;
     de: string;
   };
+  legal: {
+    navLabel: string;
+    imprint: string;
+    privacy: string;
+    terms: string;
+    placeholderBanner: string;
+    backHome: string;
+  };
 }
 
 export const translations: Record<Locale, Translation> = {
@@ -109,6 +117,14 @@ export const translations: Record<Locale, Translation> = {
       poweredBy: "Search powered by Brave Search API.",
     },
     language: { en: "English", de: "Deutsch" },
+    legal: {
+      navLabel: "Legal",
+      imprint: "Imprint",
+      privacy: "Privacy Policy",
+      terms: "Terms",
+      placeholderBanner: "[PLACEHOLDER — content coming soon]",
+      backHome: "Back to home",
+    },
   },
   de: {
     brand: "Leaax",
@@ -165,5 +181,13 @@ export const translations: Record<Locale, Translation> = {
       poweredBy: "Suche unterstützt durch die Brave Search API.",
     },
     language: { en: "English", de: "Deutsch" },
+    legal: {
+      navLabel: "Rechtliches",
+      imprint: "Impressum",
+      privacy: "Datenschutz",
+      terms: "AGB",
+      placeholderBanner: "[PLATZHALTER — Inhalt folgt]",
+      backHome: "Zurück zur Startseite",
+    },
   },
 };

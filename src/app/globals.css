@@ -39,3 +39,41 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
+
+/* Minimal styling for Markdown rendered on the legal pages (see
+   src/lib/content.ts) — kept hand-rolled rather than pulling in a
+   Tailwind Typography plugin for what is, for now, placeholder copy. */
+.legal-content h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.legal-content h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.legal-content p {
+  margin-top: 0.75rem;
+  line-height: 1.7;
+  color: var(--foreground-muted);
+}
+.legal-content ul,
+.legal-content ol {
+  margin-top: 0.75rem;
+  padding-left: 1.5rem;
+  color: var(--foreground-muted);
+}
+.legal-content li {
+  margin-top: 0.25rem;
+}
+.legal-content a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+.legal-content strong {
+  color: var(--foreground);
+  font-weight: 600;
+}

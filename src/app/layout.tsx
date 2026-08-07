@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { LanguageProvider } from "@/lib/i18n/context";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,10 +14,33 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const description =
+  "Check in under a minute whether your name or company is linked to a publicly exposed AI chat share link. Free, private, nothing is stored.";
+
 export const metadata: Metadata = {
-  title: "Leaax — Find out where your [li:ks] are",
-  description:
-    "Check in under a minute whether your name or company is linked to a publicly exposed AI chat share link. Free, private, nothing is stored.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAME} — Find out where your [li:ks] are`,
+    template: `%s — ${SITE_NAME}`,
+  },
+  description,
+  robots: { index: true, follow: true },
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: `${SITE_NAME} — Find out where your [li:ks] are`,
+    description,
+    url: "/",
+    siteName: SITE_NAME,
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_NAME} — Find out where your [li:ks] are`,
+    description,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -3,10 +3,11 @@
 import { useLanguage } from "@/lib/i18n/context";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { CheckForm } from "@/components/CheckForm";
+import { Footer } from "@/components/Footer";
 import { AI_SHARE_PROVIDERS } from "@/lib/providers";
 
 export default function Home() {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
 
   return (
     <div className="flex-1 flex flex-col">
@@ -28,7 +29,7 @@ export default function Home() {
           <CheckForm />
 
           <div className="flex flex-col items-center gap-2 pt-4">
-            <p className="text-xs uppercase tracking-wide text-foreground-muted">{t.providers.heading}</p>
+            <h2 className="text-xs uppercase tracking-wide text-foreground-muted">{t.providers.heading}</h2>
             <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm font-medium text-foreground-muted">
               {AI_SHARE_PROVIDERS.map((p) => (
                 <span key={p.id}>{p.name}</span>
@@ -38,25 +39,13 @@ export default function Home() {
           </div>
 
           <div className="w-full rounded-xl border border-border-subtle bg-background-elevated px-5 py-4 text-left">
-            <p className="text-sm font-semibold">{t.privacy.title}</p>
+            <h2 className="text-sm font-semibold">{t.privacy.title}</h2>
             <p className="mt-1 text-sm text-foreground-muted">{t.privacy.body}</p>
           </div>
         </div>
       </main>
 
-      <footer className="flex flex-col items-center gap-1 px-6 py-6 text-center text-xs text-foreground-muted sm:px-10">
-        <p>{t.footer.text}</p>
-        <p>
-          <a
-            href="https://brave.com/search/api/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-foreground hover:underline"
-          >
-            {t.footer.poweredBy}
-          </a>
-        </p>
-      </footer>
+      <Footer locale={locale} />
     </div>
   );
 }
