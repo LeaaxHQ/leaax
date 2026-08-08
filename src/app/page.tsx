@@ -15,9 +15,9 @@ export default function Home() {
       <header className="flex items-center justify-between px-6 py-5 sm:px-10">
         <div className="flex items-center gap-2">
           <BrandLogo />
-          <div className="flex items-baseline gap-2">
-            <span className="text-lg font-bold tracking-tight">{t.brand}</span>
-            <span className="hidden sm:inline text-sm text-foreground-muted">{t.tagline}</span>
+          <div className="flex flex-col sm:flex-row sm:items-baseline gap-0 sm:gap-2">
+            <span className="text-lg font-bold tracking-tight leading-tight">{t.brand}</span>
+            <span className="text-xs sm:text-sm text-foreground-muted leading-tight">{t.tagline}</span>
           </div>
         </div>
         <LanguageSwitcher />
