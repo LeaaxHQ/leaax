@@ -72,7 +72,7 @@ export const translations: Record<Locale, Translation> = {
     },
     form: {
       label: "Name or company",
-      placeholder: "e.g. Jane Doe or Acme GmbH",
+      placeholder: "e.g. Jane Doe or Acme Inc.",
       submit: "Start check",
       submitLoading: "Checking…",
       hint: "We only use this to search — it is never saved.",
