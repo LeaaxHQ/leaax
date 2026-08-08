@@ -4,6 +4,7 @@ import { useLanguage } from "@/lib/i18n/context";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { CheckForm } from "@/components/CheckForm";
 import { Footer } from "@/components/Footer";
+import { BrandLogo } from "@/components/BrandLogo";
 import { AI_SHARE_PROVIDERS } from "@/lib/providers";
 
 export default function Home() {
@@ -12,9 +13,12 @@ export default function Home() {
   return (
     <div className="flex-1 flex flex-col">
       <header className="flex items-center justify-between px-6 py-5 sm:px-10">
-        <div className="flex items-baseline gap-2">
-          <span className="text-lg font-bold tracking-tight">{t.brand}</span>
-          <span className="hidden sm:inline text-sm text-foreground-muted">{t.tagline}</span>
+        <div className="flex items-center gap-2">
+          <BrandLogo />
+          <div className="flex items-baseline gap-2">
+            <span className="text-lg font-bold tracking-tight">{t.brand}</span>
+            <span className="hidden sm:inline text-sm text-foreground-muted">{t.tagline}</span>
+          </div>
         </div>
         <LanguageSwitcher />
       </header>

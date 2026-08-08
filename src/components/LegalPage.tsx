@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
+import { BrandLogo } from "@/components/BrandLogo";
 import type { Locale } from "@/lib/i18n/translations";
 
 interface LegalPageProps {
@@ -27,7 +28,8 @@ export function LegalPage({
   return (
     <div className="flex-1 flex flex-col">
       <header className="flex items-center justify-between px-6 py-5 sm:px-10">
-        <Link href="/" className="text-lg font-bold tracking-tight hover:text-accent">
+        <Link href="/" className="flex items-center gap-2 text-lg font-bold tracking-tight hover:text-accent">
+          <BrandLogo />
           Leaax
         </Link>
         <Link href={siblingHref} className="text-sm text-foreground-muted hover:text-foreground hover:underline">
