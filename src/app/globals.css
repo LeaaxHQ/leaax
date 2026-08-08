@@ -77,3 +77,72 @@ body {
   color: var(--foreground);
   font-weight: 600;
 }
+
+/* "What to do now?" recommendation snippets under a red/yellow result
+   (see src/lib/content.ts / content/recommendations-*.md) — same
+   trusted-Markdown rendering as .legal-content above, sized down for a
+   nested card context. Includes the provider-instructions <details>
+   embedded directly in the Markdown source. */
+.recommendation-content {
+  font-size: 0.875rem;
+}
+.recommendation-content ol,
+.recommendation-content ul {
+  padding-left: 1.25rem;
+  color: var(--foreground-muted);
+}
+.recommendation-content ol {
+  list-style: decimal;
+}
+.recommendation-content ul {
+  list-style: disc;
+}
+.recommendation-content li {
+  margin-top: 0.4rem;
+  line-height: 1.6;
+}
+.recommendation-content li::marker {
+  color: var(--foreground);
+}
+.recommendation-content strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+.recommendation-content em {
+  display: block;
+  margin-top: 0.75rem;
+  color: var(--foreground-muted);
+  font-size: 0.8rem;
+}
+.recommendation-content details {
+  margin-top: 0.75rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+}
+.recommendation-content details[open] {
+  padding-bottom: 0.75rem;
+}
+.recommendation-content details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--foreground);
+}
+.recommendation-content details ul {
+  margin-top: 0.5rem;
+}
+.recommendation-content details > p {
+  margin-top: 0.5rem;
+  color: var(--foreground-muted);
+}
+
+/* The outer "What to do now?" toggle itself (see CheckBreakdown in
+   src/components/ResultCard.tsx) — kept collapsed by default so the
+   check result stays the visual focus. */
+.recommendation-toggle summary {
+  cursor: pointer;
+  list-style: none;
+}
+.recommendation-toggle summary::-webkit-details-marker {
+  display: none;
+}

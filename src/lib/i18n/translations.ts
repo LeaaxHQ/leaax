@@ -39,6 +39,7 @@ export interface Translation {
     foundVia: string;
     foundInBreach: string;
     noContentShown: string;
+    whatToDoNow: string;
     checkAnother: string;
   };
   errors: {
@@ -119,6 +120,7 @@ export const translations: Record<Locale, Translation> = {
       foundVia: "found via",
       foundInBreach: "found in breach",
       noContentShown: "For your privacy, we never display full contents — only a masked reference.",
+      whatToDoNow: "What to do now?",
       checkAnother: "Check again",
     },
     errors: {
@@ -194,6 +196,7 @@ export const translations: Record<Locale, Translation> = {
       foundVia: "gefunden über",
       foundInBreach: "gefunden in Datenleck",
       noContentShown: "Zu deinem Schutz zeigen wir nie vollständige Inhalte an — nur einen maskierten Hinweis.",
+      whatToDoNow: "Was jetzt tun?",
       checkAnother: "Erneut prüfen",
     },
     errors: {

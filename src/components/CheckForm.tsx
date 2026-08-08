@@ -7,6 +7,7 @@ import { CheckBreakdown, OverallResultCard, type DisplayHit } from "@/components
 import type { CheckHit } from "@/lib/search";
 import type { BreachHit } from "@/lib/breach";
 import { worseStatus, type TrafficLightStatus } from "@/lib/status";
+import type { RecommendationsContent } from "@/lib/content";
 
 interface NameCheckResponse {
   status: TrafficLightStatus;
@@ -68,8 +69,12 @@ async function fetchCheck<T>(url: string, body: Record<string, string>): Promise
   }
 }
 
-export function CheckForm() {
-  const { t } = useLanguage();
+interface CheckFormProps {
+  recommendations: RecommendationsContent;
+}
+
+export function CheckForm({ recommendations }: CheckFormProps) {
+  const { t, locale } = useLanguage();
   const [nameQuery, setNameQuery] = useState("");
   const [email, setEmail] = useState("");
   const [state, setState] = useState<ViewState>({ kind: "idle" });
@@ -173,7 +178,13 @@ export function CheckForm() {
 
       {state.kind === "result" && (
         <>
-          <ResultsSummary name={state.name} email={state.email} t={t} />
+          <ResultsSummary
+            name={state.name}
+            email={state.email}
+            t={t}
+            aiChatRecommendationHtml={recommendations.aiChat[locale]}
+            breachRecommendationHtml={recommendations.breach[locale]}
+          />
           <button
             type="button"
             onClick={reset}
@@ -191,9 +202,11 @@ interface ResultsSummaryProps {
   name?: CheckOutcome<NameCheckResponse>;
   email?: CheckOutcome<EmailCheckResponse>;
   t: Translation;
+  aiChatRecommendationHtml: string;
+  breachRecommendationHtml: string;
 }
 
-function ResultsSummary({ name, email, t }: ResultsSummaryProps) {
+function ResultsSummary({ name, email, t, aiChatRecommendationHtml, breachRecommendationHtml }: ResultsSummaryProps) {
   const okStatuses: TrafficLightStatus[] = [];
   if (name?.kind === "ok") okStatuses.push(name.data.status);
   if (email?.kind === "ok") okStatuses.push(email.data.status);
@@ -257,6 +270,7 @@ function ResultsSummary({ name, email, t }: ResultsSummaryProps) {
             hits={nameHits}
             totalHits={name.data.totalHits}
             t={t}
+            recommendationHtml={aiChatRecommendationHtml}
           />
         ) : (
           <CheckBreakdown kind="error" label={t.result.checks.name.label} errorMessage={t.errors[name.errorKey]} />
@@ -270,6 +284,7 @@ function ResultsSummary({ name, email, t }: ResultsSummaryProps) {
             hits={emailHits}
             totalHits={email.data.totalHits}
             t={t}
+            recommendationHtml={breachRecommendationHtml}
           />
         ) : (
           <CheckBreakdown kind="error" label={t.result.checks.email.label} errorMessage={t.errors[email.errorKey]} />

@@ -12,7 +12,16 @@ export interface DisplayHit {
 }
 
 type CheckBreakdownProps =
-  | { kind: "ok"; label: string; status: TrafficLightStatus; hits: DisplayHit[]; totalHits: number; t: Translation }
+  | {
+      kind: "ok";
+      label: string;
+      status: TrafficLightStatus;
+      hits: DisplayHit[];
+      totalHits: number;
+      t: Translation;
+      /** Pre-rendered "what to do now" recommendation HTML for this check, in the current locale — see src/lib/content.ts. */
+      recommendationHtml: string;
+    }
   | { kind: "error"; label: string; errorMessage: string };
 
 const STATUS_DOT: Record<TrafficLightStatus, string> = {
@@ -35,7 +44,7 @@ export function CheckBreakdown(props: CheckBreakdownProps) {
     );
   }
 
-  const { label, status, hits, totalHits, t } = props;
+  const { label, status, hits, totalHits, t, recommendationHtml } = props;
 
   return (
     <div>
@@ -63,6 +72,20 @@ export function CheckBreakdown(props: CheckBreakdownProps) {
             ))}
           </ul>
         </div>
+      )}
+
+      {/* Fixed, editorially-reviewed guidance (content/recommendations-*.md)
+          — never model-generated — shown collapsed by default so the
+          result itself stays the visual focus. Only surfaced for an
+          actual hit (red/yellow), never for a clean "green" result. */}
+      {status !== "green" && (
+        <details className="recommendation-toggle mt-3 text-sm">
+          <summary className="text-accent font-medium">{t.result.whatToDoNow}</summary>
+          <div
+            className="recommendation-content mt-2"
+            dangerouslySetInnerHTML={{ __html: recommendationHtml }}
+          />
+        </details>
       )}
     </div>
   );
