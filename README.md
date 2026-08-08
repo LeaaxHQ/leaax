@@ -1,6 +1,12 @@
 # leaax
 Leaax — find out where your [li:ks] are
 
+*English version*
+![Leaax result showing a found public AI chat link](screenshots/Leaax-result-en.png)
+
+*German version*
+![Leaax-Ergebnis mit gefundenem KI-Chat-Freigabelink](screenshots/Leaax-result-de.png)
+
 ## **What's this about?**
 Freelancers, small businesses, and individuals alike trust their data to cloud services and AI tools every day — usually without knowing whether that data is publicly exposed somewhere.
 
