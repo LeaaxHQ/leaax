@@ -32,6 +32,23 @@ Checked providers (public, search-engine-indexed share links only —
 see [`src/lib/providers.ts`](src/lib/providers.ts) to extend):
 ChatGPT, Claude, Gemini, Grok, DeepSeek.
 
+## MVP 2 — scope
+
+MVP 2 adds a second, independent check alongside MVP 1's (nothing from
+MVP 1 is removed or replaced): enter an email address → the app checks it
+against known data-breach databases via the
+[XposedOrNot API](https://xposedornot.com/api_doc) (free, keyless) →
+result comes back as the same red/yellow/green traffic light.
+
+The homepage now has two optional fields (name/company, email) — at
+least one must be filled to run a check. If both are filled, both checks
+run in parallel and are shown as an overall result (the worse of the two)
+with a per-check breakdown underneath.
+
+See [`src/lib/breach/`](src/lib/breach) for the provider implementation
+and [`src/app/api/check-email/route.ts`](src/app/api/check-email/route.ts)
+for the endpoint.
+
 ## Getting started
 
 Requirements: Node.js 20+ and npm.
@@ -52,19 +69,27 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Security & privacy notes (MVP 1)
+## Security & privacy notes (MVP 1 + MVP 2)
 
-- The search query and results are never persisted (no DB, no file, no
-  analytics call) — they live only in the memory of the request that
-  handles them. See [`src/app/api/check/route.ts`](src/app/api/check/route.ts).
-- Server logs never contain the search term, see [`src/lib/logger.ts`](src/lib/logger.ts).
-- Input is sanitized/validated server-side, see [`src/lib/validate.ts`](src/lib/validate.ts).
+- Neither the search query/name nor the email address (nor either check's
+  results) are ever persisted (no DB, no file, no analytics call) — they
+  live only in the memory of the request that handles them. See
+  [`src/app/api/check/route.ts`](src/app/api/check/route.ts) and
+  [`src/app/api/check-email/route.ts`](src/app/api/check-email/route.ts).
+- Server logs never contain the search term or the email address, see
+  [`src/lib/logger.ts`](src/lib/logger.ts) (shared by both endpoints).
+- Input is sanitized/validated server-side for both checks, see
+  [`src/lib/validate.ts`](src/lib/validate.ts) (`sanitizeQuery` /
+  `sanitizeEmail`).
 - Requests are rate-limited per IP, see [`src/lib/rateLimit.ts`](src/lib/rateLimit.ts)
-  (in-memory per serverless instance — good enough for MVP-1's "no backend"
+  (in-memory per serverless instance — good enough for MVP-1/2's "no backend"
   constraint; swap for a shared store like Upstash Redis if abuse becomes an issue).
+  The same limiter instance is shared across both `/api/check` and
+  `/api/check-email`, keyed by IP.
 - Security headers (CSP, HSTS, etc.) are set in [`next.config.ts`](next.config.ts).
-- Full chat contents are never shown — only a masked label and the source
-  domain, see [`src/lib/mask.ts`](src/lib/mask.ts).
+- Full chat contents / breach details are never shown — only a masked
+  label plus the source domain or breach name, see
+  [`src/lib/mask.ts`](src/lib/mask.ts).
 
 ## Deployment
 

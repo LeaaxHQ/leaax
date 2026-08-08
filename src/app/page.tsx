@@ -40,6 +40,7 @@ export default function Home() {
               ))}
             </div>
             <p className="max-w-md text-xs text-foreground-muted">{t.providers.note}</p>
+            <p className="max-w-md text-xs text-foreground-muted">{t.providers.emailNote}</p>
           </div>
 
           <div className="w-full rounded-xl border border-border-subtle bg-background-elevated px-5 py-4 text-left">

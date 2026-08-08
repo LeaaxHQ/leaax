@@ -50,3 +50,45 @@ export function sanitizeQuery(raw: unknown): SanitizeResult {
 
   return { ok: true, value: parsed.data };
 }
+
+/**
+ * Strict input validation/sanitization for the email-breach-check query.
+ *
+ * - Strips ASCII control characters, then trims whitespace
+ * - Enforces RFC 5321's practical max length for a full email address
+ * - Delegates format validation to zod's `email()` check rather than a
+ *   hand-rolled regex, so the value is well-formed before it's ever used
+ *   to build the outbound breach-provider request
+ * - Lower-cases the result: email lookups are effectively case-insensitive,
+ *   and normalizing avoids treating "Jane@x.com" / "jane@x.com" as
+ *   different inputs downstream
+ */
+const EMAIL_MAX_LENGTH = 254;
+
+export const checkEmailSchema = z.email();
+
+export type EmailSanitizeResult =
+  | { ok: true; value: string }
+  | { ok: false; error: "too_short" | "too_long" | "invalid" };
+
+export function sanitizeEmail(raw: unknown): EmailSanitizeResult {
+  if (typeof raw !== "string") {
+    return { ok: false, error: "invalid" };
+  }
+
+  const withoutControlChars = raw.replace(CONTROL_CHARS, "").trim();
+
+  if (withoutControlChars.length === 0) {
+    return { ok: false, error: "too_short" };
+  }
+  if (withoutControlChars.length > EMAIL_MAX_LENGTH) {
+    return { ok: false, error: "too_long" };
+  }
+
+  const parsed = checkEmailSchema.safeParse(withoutControlChars);
+  if (!parsed.success) {
+    return { ok: false, error: "invalid" };
+  }
+
+  return { ok: true, value: parsed.data.toLowerCase() };
+}

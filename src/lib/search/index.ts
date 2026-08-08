@@ -1,9 +1,14 @@
 import { AI_SHARE_PROVIDERS, buildProviderQuery, matchProvider } from "@/lib/providers";
 import { maskQuery, maskSourceUrl } from "@/lib/mask";
+import type { TrafficLightStatus } from "@/lib/status";
 import { createBraveSearchProvider } from "./brave";
 import { SearchProviderNotConfiguredError, type WebSearchProvider } from "./types";
 
-export type TrafficLightStatus = "red" | "yellow" | "green";
+// Re-exported for backwards compatibility — existing call sites import
+// this type from "@/lib/search". The canonical definition lives in
+// "@/lib/status" so the email-breach check (src/lib/breach) can share it
+// without creating a dependency on the search module.
+export type { TrafficLightStatus };
 
 export interface CheckHit {
   providerId: string;

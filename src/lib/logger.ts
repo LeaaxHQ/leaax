@@ -8,6 +8,8 @@
 
 type CheckEvent = {
   event: "check_requested" | "check_completed" | "check_rejected" | "check_failed";
+  /** Which independent check this event is about. Not PII — just a label. */
+  check?: "name" | "email";
   status?: "green" | "yellow" | "red";
   hitCount?: number;
   rawResultCount?: number;

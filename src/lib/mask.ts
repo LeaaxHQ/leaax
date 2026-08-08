@@ -24,3 +24,30 @@ export function maskSourceUrl(url: string): string {
     return "unknown source";
   }
 }
+
+/**
+ * Masks an email address for display, e.g. "jane.doe@example.com" ->
+ * "j***@e*****.com". Like maskQuery, every masked segment uses a
+ * fixed-length mask (not the original segment's length) so neither the
+ * local part nor the domain name's original length can be reconstructed
+ * from the masked output.
+ */
+export function maskEmail(email: string): string {
+  const atIndex = email.indexOf("@");
+  if (atIndex <= 0 || atIndex === email.length - 1) {
+    return "***";
+  }
+
+  const localPart = email.slice(0, atIndex);
+  const domain = email.slice(atIndex + 1);
+
+  const lastDot = domain.lastIndexOf(".");
+  const hasTld = lastDot > 0 && lastDot < domain.length - 1;
+  const domainName = hasTld ? domain.slice(0, lastDot) : domain;
+  const tld = hasTld ? domain.slice(lastDot + 1) : "";
+
+  const maskedLocal = `${localPart.charAt(0)}***`;
+  const maskedDomain = `${domainName.charAt(0)}*****`;
+
+  return hasTld ? `${maskedLocal}@${maskedDomain}.${tld}` : `${maskedLocal}@${maskedDomain}`;
+}

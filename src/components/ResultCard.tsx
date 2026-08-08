@@ -1,11 +1,78 @@
+import type { ReactNode } from "react";
 import type { Translation } from "@/lib/i18n/translations";
-import type { CheckHit, TrafficLightStatus } from "@/lib/search";
+import type { TrafficLightStatus } from "@/lib/status";
 
-interface ResultCardProps {
+/** A single masked hit, already formatted for display — shared shape for
+ * both the AI-chat-leak hits and the email-breach hits, so the rendering
+ * doesn't need to know which check produced them. */
+export interface DisplayHit {
+  key: string;
+  maskedLabel: string;
+  detail: string;
+}
+
+type CheckBreakdownProps =
+  | { kind: "ok"; label: string; status: TrafficLightStatus; hits: DisplayHit[]; totalHits: number; t: Translation }
+  | { kind: "error"; label: string; errorMessage: string };
+
+const STATUS_DOT: Record<TrafficLightStatus, string> = {
+  red: "bg-status-red",
+  yellow: "bg-status-yellow",
+  green: "bg-status-green",
+};
+
+/** One line of the per-check breakdown, e.g. "AI chat history: Red", plus its masked hit list. */
+export function CheckBreakdown(props: CheckBreakdownProps) {
+  if (props.kind === "error") {
+    return (
+      <div>
+        <div className="flex items-center gap-2 text-sm font-semibold">
+          <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-foreground-muted" aria-hidden="true" />
+          <span>{props.label}</span>
+        </div>
+        <p className="mt-2 text-xs text-foreground-muted">{props.errorMessage}</p>
+      </div>
+    );
+  }
+
+  const { label, status, hits, totalHits, t } = props;
+
+  return (
+    <div>
+      <div className="flex items-center gap-2 text-sm font-semibold">
+        <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${STATUS_DOT[status]}`} aria-hidden="true" />
+        <span>
+          {label}: {t.result.statusWord[status]}
+        </span>
+      </div>
+
+      {totalHits > 0 && (
+        <div className="mt-3 space-y-3">
+          <p className="text-xs font-medium text-foreground-muted">
+            {totalHits} {t.result.hitsFound}
+          </p>
+          <ul className="space-y-2">
+            {hits.map((hit) => (
+              <li
+                key={hit.key}
+                className="flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg border border-border-subtle bg-background/60 px-4 py-3 text-sm"
+              >
+                <span className="font-mono">{hit.maskedLabel}</span>
+                <span className="text-foreground-muted">— {hit.detail}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
+interface OverallResultCardProps {
   status: TrafficLightStatus;
-  hits: CheckHit[];
-  totalHits: number;
+  children: ReactNode;
   t: Translation;
+  hasAnyHits: boolean;
 }
 
 const STATUS_STYLES: Record<TrafficLightStatus, { dot: string; border: string; bg: string }> = {
@@ -14,9 +81,10 @@ const STATUS_STYLES: Record<TrafficLightStatus, { dot: string; border: string; b
   green: { dot: "bg-status-green", border: "border-status-green/40", bg: "bg-[var(--status-green-bg)]" },
 };
 
-export function ResultCard({ status, hits, totalHits, t }: ResultCardProps) {
+/** The overall (combined) result — the worse of the individual checks' statuses — with each check's breakdown nested inside. */
+export function OverallResultCard({ status, children, t, hasAnyHits }: OverallResultCardProps) {
   const styles = STATUS_STYLES[status];
-  const copy = t.result[status];
+  const copy = t.result.overall[status];
 
   return (
     <div
@@ -30,27 +98,9 @@ export function ResultCard({ status, hits, totalHits, t }: ResultCardProps) {
       </div>
       <p className="mt-3 text-foreground-muted leading-relaxed">{copy.body}</p>
 
-      {totalHits > 0 && (
-        <div className="mt-6 space-y-3">
-          <p className="text-sm font-medium text-foreground-muted">
-            {totalHits} {t.result.hitsFound}
-          </p>
-          <ul className="space-y-2">
-            {hits.map((hit, i) => (
-              <li
-                key={`${hit.providerId}-${i}`}
-                className="flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg border border-border-subtle bg-background/60 px-4 py-3 text-sm"
-              >
-                <span className="font-mono">{hit.maskedLabel}</span>
-                <span className="text-foreground-muted">
-                  — {t.result.foundVia}: {hit.providerName} ({hit.sourceDomain})
-                </span>
-              </li>
-            ))}
-          </ul>
-          <p className="text-xs text-foreground-muted">{t.result.noContentShown}</p>
-        </div>
-      )}
+      <div className="mt-6 space-y-4 divide-y divide-border-subtle/60 [&>*+*]:pt-4">{children}</div>
+
+      {hasAnyHits && <p className="mt-4 text-xs text-foreground-muted">{t.result.noContentShown}</p>}
     </div>
   );
 }

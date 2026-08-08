@@ -11,8 +11,10 @@ export interface Translation {
     subtitle: string;
   };
   form: {
-    label: string;
-    placeholder: string;
+    nameLabel: string;
+    namePlaceholder: string;
+    emailLabel: string;
+    emailPlaceholder: string;
     submit: string;
     submitLoading: string;
     hint: string;
@@ -20,14 +22,22 @@ export interface Translation {
   providers: {
     heading: string;
     note: string;
+    emailNote: string;
   };
   result: {
-    heading: string;
-    red: { title: string; body: string };
-    yellow: { title: string; body: string };
-    green: { title: string; body: string };
+    overall: {
+      red: { title: string; body: string };
+      yellow: { title: string; body: string };
+      green: { title: string; body: string };
+    };
+    statusWord: { red: string; yellow: string; green: string };
+    checks: {
+      name: { label: string };
+      email: { label: string };
+    };
     hitsFound: string;
     foundVia: string;
+    foundInBreach: string;
     noContentShown: string;
     checkAnother: string;
   };
@@ -38,6 +48,7 @@ export interface Translation {
     rate_limited: string;
     provider_not_configured: string;
     internal_error: string;
+    at_least_one_required: string;
   };
   privacy: {
     title: string;
@@ -66,13 +77,15 @@ export const translations: Record<Locale, Translation> = {
     brand: "Leaax",
     tagline: "Find out where your [li:ks] are",
     hero: {
-      title: "Is your name exposed in a public AI chat?",
+      title: "Is your data publicly exposed?",
       subtitle:
-        "Shared AI chat logs sometimes end up publicly visible in search engines. Check in under a minute, free, nothing is stored.",
+        "Public AI chat shares and email data breaches can expose you without you knowing. Check either or both in under a minute, free, nothing is stored.",
     },
     form: {
-      label: "Name or company",
-      placeholder: "e.g. Jane Doe or Acme Inc.",
+      nameLabel: "Name or company",
+      namePlaceholder: "e.g. Jane Doe or Acme Inc.",
+      emailLabel: "Email address",
+      emailPlaceholder: "e.g. jane@example.com",
       submit: "Start check",
       submitLoading: "Checking…",
       hint: "We only use this to search — it is never saved.",
@@ -80,25 +93,33 @@ export const translations: Record<Locale, Translation> = {
     providers: {
       heading: "We check public share links from",
       note: "Only providers with a real, search-engine-indexed public share feature are included. Private/agent tools without a public share link (e.g. OpenClaw, MyClaw) are out of scope, since that leak pattern doesn't exist there.",
+      emailNote: "Email data breaches are checked against XposedOrNot's public breach database.",
     },
     result: {
-      heading: "Your result",
-      red: {
-        title: "We found a likely match",
-        body: "One or more public AI chat share links appear to be linked to what you entered. Consider having them taken down.",
+      overall: {
+        red: {
+          title: "We found something you should look at",
+          body: "At least one of the checks below found a match. See the breakdown for details.",
+        },
+        yellow: {
+          title: "We found something unclear",
+          body: "At least one of the checks below found something that might be related, but we're not fully sure. See the breakdown for details.",
+        },
+        green: {
+          title: "Nothing found",
+          body: "We didn't find anything in the checks you ran.",
+        },
       },
-      yellow: {
-        title: "We found something unclear",
-        body: "There are results that might be related, but we're not fully sure. Worth a closer look.",
-      },
-      green: {
-        title: "Nothing found",
-        body: "We didn't find any public AI chat share link connected to what you entered right now.",
+      statusWord: { red: "Red", yellow: "Yellow", green: "Green" },
+      checks: {
+        name: { label: "AI chat history" },
+        email: { label: "Email data breaches" },
       },
       hitsFound: "matches found",
       foundVia: "found via",
-      noContentShown: "For your privacy, we never display full chat contents — only a masked reference.",
-      checkAnother: "Check another name",
+      foundInBreach: "found in breach",
+      noContentShown: "For your privacy, we never display full contents — only a masked reference.",
+      checkAnother: "Check again",
     },
     errors: {
       too_short: "Please enter at least 2 characters.",
@@ -107,14 +128,15 @@ export const translations: Record<Locale, Translation> = {
       rate_limited: "Too many checks from your connection. Please try again in a moment.",
       provider_not_configured: "The check service isn't fully set up yet. Please try again later.",
       internal_error: "Something went wrong on our side. Please try again.",
+      at_least_one_required: "Please enter a name/company or an email address.",
     },
     privacy: {
       title: "Your privacy",
-      body: "What you type here is only held in memory for the duration of this one check and is discarded immediately after — we never store your search term or the results.",
+      body: "What you type here is only held in memory for the duration of this one check and is discarded immediately after — we never store your search term, email address, or the results.",
     },
     footer: {
-      text: "Leaax is an independent security check. Not affiliated with OpenAI, Anthropic, Google, xAI, or DeepSeek.",
-      poweredBy: "Search powered by Brave Search API.",
+      text: "Leaax is an independent security check. Not affiliated with OpenAI, Anthropic, Google, xAI, DeepSeek, or XposedOrNot.",
+      poweredBy: "AI-chat search powered by Brave Search API. Breach data powered by XposedOrNot.",
     },
     language: { en: "English", de: "Deutsch" },
     legal: {
@@ -130,13 +152,15 @@ export const translations: Record<Locale, Translation> = {
     brand: "Leaax",
     tagline: "Finde heraus, wo deine [li:ks] sind",
     hero: {
-      title: "Ist dein Name in einem öffentlichen KI-Chat sichtbar?",
+      title: "Sind deine Daten öffentlich sichtbar?",
       subtitle:
-        "Geteilte KI-Chat-Verläufe landen manchmal öffentlich sichtbar in Suchmaschinen. Prüfe es in unter einer Minute, kostenlos, ohne Speicherung.",
+        "Öffentliche KI-Chat-Freigaben und E-Mail-Datenlecks können dich offenlegen, ohne dass du es merkst. Prüfe eins oder beides in unter einer Minute, kostenlos, ohne Speicherung.",
     },
     form: {
-      label: "Name oder Firma",
-      placeholder: "z. B. Erika Mustermann oder Muster GmbH",
+      nameLabel: "Name oder Firma",
+      namePlaceholder: "z. B. Erika Mustermann oder Muster GmbH",
+      emailLabel: "E-Mail-Adresse",
+      emailPlaceholder: "z. B. erika@beispiel.de",
       submit: "Check starten",
       submitLoading: "Wird geprüft…",
       hint: "Wir nutzen das nur für die Suche — es wird nie gespeichert.",
@@ -144,25 +168,33 @@ export const translations: Record<Locale, Translation> = {
     providers: {
       heading: "Wir prüfen öffentliche Freigabelinks von",
       note: "Nur Anbieter mit einer echten, von Suchmaschinen indexierten öffentlichen Freigabefunktion sind enthalten. Private Agenten-Tools ohne öffentliche Freigabelinks (z. B. OpenClaw, MyClaw) sind bewusst ausgeschlossen, da dieses Leck-Muster dort nicht existiert.",
+      emailNote: "E-Mail-Datenlecks werden gegen die öffentliche Datenleck-Datenbank von XposedOrNot geprüft.",
     },
     result: {
-      heading: "Dein Ergebnis",
-      red: {
-        title: "Wir haben einen wahrscheinlichen Treffer gefunden",
-        body: "Ein oder mehrere öffentliche KI-Chat-Freigabelinks scheinen mit deiner Eingabe verbunden zu sein. Eine Löschung sollte in Betracht gezogen werden.",
+      overall: {
+        red: {
+          title: "Wir haben etwas gefunden, das du dir ansehen solltest",
+          body: "Mindestens eine der Prüfungen unten hat einen Treffer ergeben. Details siehe Aufschlüsselung.",
+        },
+        yellow: {
+          title: "Wir haben etwas Unklares gefunden",
+          body: "Mindestens eine der Prüfungen unten hat etwas potenziell Zusammenhängendes gefunden, wir sind uns aber nicht ganz sicher. Details siehe Aufschlüsselung.",
+        },
+        green: {
+          title: "Nichts gefunden",
+          body: "Wir konnten bei den durchgeführten Prüfungen nichts finden.",
+        },
       },
-      yellow: {
-        title: "Wir haben etwas Unklares gefunden",
-        body: "Es gibt Ergebnisse, die damit zusammenhängen könnten, wir sind uns aber nicht ganz sicher. Ein genauerer Blick lohnt sich.",
-      },
-      green: {
-        title: "Nichts gefunden",
-        body: "Wir konnten aktuell keinen öffentlichen KI-Chat-Freigabelink finden, der mit deiner Eingabe verbunden ist.",
+      statusWord: { red: "Rot", yellow: "Gelb", green: "Grün" },
+      checks: {
+        name: { label: "KI-Chat-Verläufe" },
+        email: { label: "E-Mail-Datenlecks" },
       },
       hitsFound: "Treffer gefunden",
       foundVia: "gefunden über",
-      noContentShown: "Zu deinem Schutz zeigen wir nie vollständige Chat-Inhalte an — nur einen maskierten Hinweis.",
-      checkAnother: "Weiteren Namen prüfen",
+      foundInBreach: "gefunden in Datenleck",
+      noContentShown: "Zu deinem Schutz zeigen wir nie vollständige Inhalte an — nur einen maskierten Hinweis.",
+      checkAnother: "Erneut prüfen",
     },
     errors: {
       too_short: "Bitte gib mindestens 2 Zeichen ein.",
@@ -171,14 +203,15 @@ export const translations: Record<Locale, Translation> = {
       rate_limited: "Zu viele Prüfungen von deiner Verbindung. Bitte versuche es gleich noch einmal.",
       provider_not_configured: "Der Prüfdienst ist noch nicht vollständig eingerichtet. Bitte versuche es später erneut.",
       internal_error: "Auf unserer Seite ist etwas schiefgelaufen. Bitte versuche es erneut.",
+      at_least_one_required: "Bitte gib einen Namen/eine Firma oder eine E-Mail-Adresse ein.",
     },
     privacy: {
       title: "Deine Privatsphäre",
-      body: "Deine Eingabe wird nur für die Dauer dieser einen Prüfung im Arbeitsspeicher gehalten und danach sofort verworfen — wir speichern weder deinen Suchbegriff noch die Ergebnisse.",
+      body: "Deine Eingabe wird nur für die Dauer dieser einen Prüfung im Arbeitsspeicher gehalten und danach sofort verworfen — wir speichern weder deinen Suchbegriff noch deine E-Mail-Adresse noch die Ergebnisse.",
     },
     footer: {
-      text: "Leaax ist ein unabhängiges Sicherheits-Tool. Nicht verbunden mit OpenAI, Anthropic, Google, xAI oder DeepSeek.",
-      poweredBy: "Suche unterstützt durch die Brave Search API.",
+      text: "Leaax ist ein unabhängiges Sicherheits-Tool. Nicht verbunden mit OpenAI, Anthropic, Google, xAI, DeepSeek oder XposedOrNot.",
+      poweredBy: "KI-Chat-Suche unterstützt durch die Brave Search API. Datenleck-Daten von XposedOrNot.",
     },
     language: { en: "English", de: "Deutsch" },
     legal: {
