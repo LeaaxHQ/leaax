@@ -9,6 +9,18 @@ export interface Translation {
     title: string;
     subtitle: string;
   };
+  about: {
+    title: string;
+    body: string;
+  };
+  problem: {
+    title: string;
+    body: string;
+  };
+  whatWeDo: {
+    title: string;
+    body: string;
+  };
   form: {
     nameLabel: string;
     namePlaceholder: string;
@@ -82,6 +94,18 @@ export const translations: Record<Locale, Translation> = {
       subtitle:
         "Public AI chat shares and email data breaches can expose you without you knowing. Check either or both in under a minute, free, nothing is stored.",
     },
+    about: {
+      title: "What's this about?",
+      body: "Anyone using ChatGPT or other AI chats for work — client data, project details, internal notes — risks having a shared chat end up public without noticing. Freelancers and small businesses handling sensitive information in AI tools are especially exposed — but individuals aren't immune either.",
+    },
+    problem: {
+      title: "The problem",
+      body: "Shared ChatGPT chats alone have repeatedly turned up in plain Google searches in recent months — customer names, internal strategy, even credentials. The same applies to Claude, Gemini, and other AI chats. Most existing security tools are built for developers and large IT departments. For freelancers and small businesses who just want to know \"is my ChatGPT chat exposed?\", nothing has really fit — until now.",
+    },
+    whatWeDo: {
+      title: "What Leaax does",
+      body: "A free check in under 60 seconds: is your ChatGPT or AI chat publicly exposed, or does your email show up in a known data breach? Results come as a clear traffic-light score — red, yellow, green — in plain language, no jargon. Your checked data is never stored.",
+    },
     form: {
       nameLabel: "Name or company",
       namePlaceholder: "e.g. Jane Doe or Acme Inc.",
@@ -94,7 +118,8 @@ export const translations: Record<Locale, Translation> = {
     providers: {
       heading: "We check public share links from",
       note: "Only providers with a real, search-engine-indexed public share feature are included. Private/agent tools without a public share link (e.g. OpenClaw, MyClaw) are out of scope, since that leak pattern doesn't exist there.",
-      emailNote: "Email data breaches are checked against XposedOrNot's public breach database.",
+      emailNote:
+        "Email breaches are additionally checked against XposedOrNot's public breach database — as a complement to the AI chat check, not a replacement for dedicated breach-monitoring services.",
     },
     result: {
       overall: {
@@ -159,6 +184,18 @@ export const translations: Record<Locale, Translation> = {
       subtitle:
         "Öffentliche KI-Chat-Freigaben und E-Mail-Datenlecks können dich offenlegen, ohne dass du es merkst. Prüfe eins oder beides in unter einer Minute, kostenlos, ohne Speicherung.",
     },
+    about: {
+      title: "Worum geht's?",
+      body: "Wer ChatGPT oder andere KI-Chats beruflich nutzt — etwa für Kundendaten, Projektdetails oder interne Notizen — läuft Gefahr, dass ein geteilter Chat unbemerkt öffentlich landet. Betroffen sind vor allem Freelancer und kleine Unternehmen, die sensible Informationen in KI-Tools eingeben — aber auch Privatpersonen sind nicht ausgenommen.",
+    },
+    problem: {
+      title: "Das Problem",
+      body: "Allein bei ChatGPT wurden in den letzten Monaten wiederholt tausende geteilte Chats über normale Google-Suchen auffindbar — Kundennamen, interne Strategien, Zugangsdaten inklusive. Das Gleiche gilt für Claude, Gemini und andere KI-Chats. Die meisten bestehenden Sicherheits-Tools sind für Entwickler und große IT-Abteilungen gebaut. Für Freelancer und kleine Unternehmen, die einfach nur wissen wollen, „ist mein ChatGPT-Chat betroffen?“, gibt es bisher nichts Passendes.",
+    },
+    whatWeDo: {
+      title: "Was Leaax macht",
+      body: "Ein kostenloser Check in unter 60 Sekunden: Ist dein ChatGPT- oder KI-Chat öffentlich auffindbar, oder taucht deine E-Mail in einem bekannten Datenleck auf? Ergebnis als klare Ampel — rot, gelb, grün — in einfacher Sprache, ohne Fachjargon. Deine geprüften Daten werden nicht gespeichert.",
+    },
     form: {
       nameLabel: "Name oder Firma",
       namePlaceholder: "z. B. Erika Mustermann oder Muster GmbH",
@@ -171,7 +208,8 @@ export const translations: Record<Locale, Translation> = {
     providers: {
       heading: "Wir prüfen öffentliche Freigabelinks von",
       note: "Nur Anbieter mit einer echten, von Suchmaschinen indexierten öffentlichen Freigabefunktion sind enthalten. Private Agenten-Tools ohne öffentliche Freigabelinks (z. B. OpenClaw, MyClaw) sind bewusst ausgeschlossen, da dieses Leck-Muster dort nicht existiert.",
-      emailNote: "E-Mail-Datenlecks werden gegen die öffentliche Datenleck-Datenbank von XposedOrNot geprüft.",
+      emailNote:
+        "E-Mail-Datenlecks werden zusätzlich gegen XposedOrNots öffentliche Breach-Datenbank geprüft — als Ergänzung zum KI-Chat-Check, nicht als Ersatz für spezialisierte Datenleck-Dienste.",
     },
     result: {
       overall: {

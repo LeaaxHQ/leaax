@@ -8,13 +8,13 @@ Leaax — find out where your [li:ks] are
 ![Leaax-Ergebnis mit gefundenem KI-Chat-Freigabelink](screenshots/Leaax-result-de.png)
 
 ## **What's this about?**
-Freelancers and small businesses increasingly rely on ChatGPT and other AI chat tools for client work — often without realizing a shared chat can end up publicly indexed and searchable, exposing customer data along with it. Individuals checking their own exposure are welcome too.
+Anyone using ChatGPT or other AI chats for work — client data, project details, internal notes — risks having a shared chat end up public without noticing. Freelancers and small businesses handling sensitive information in AI tools are especially exposed — but individuals aren't immune either.
 
 ## **The problem**
-In recent months, shared AI chat logs (ChatGPT, Claude, and others) have repeatedly turned up in plain Google searches — thousands of private conversations, including personal messages, customer data, internal strategy, and even credentials. Most existing security tools are built for developers and large IT departments. For everyone else who just wants to know "am I affected?", nothing has really fit — until now.
+Shared ChatGPT chats alone have repeatedly turned up in plain Google searches in recent months — customer names, internal strategy, even credentials. The same applies to Claude, Gemini, and other AI chats. Most existing security tools are built for developers and large IT departments. For freelancers and small businesses who just want to know "is my ChatGPT chat exposed?", nothing has really fit — until now.
 
 ## **What Leaax does**
-A free check in under 60 seconds: is your name linked to publicly exposed AI chat logs or openly shared cloud folders? Results come as a clear traffic-light score — red, yellow, green — in plain language, no jargon. Your checked data is never stored. Want ongoing peace of mind? Keep monitoring running as a subscription.
+A free check in under 60 seconds: is your ChatGPT or AI chat publicly exposed, or does your email show up in a known data breach? Results come as a clear traffic-light score — red, yellow, green — in plain language, no jargon. Your checked data is never stored.
 
 ## **Status**
 🚧 Building in public.

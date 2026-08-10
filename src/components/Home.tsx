@@ -36,6 +36,21 @@ export function Home({ locale, recommendations }: HomeProps) {
             <p className="text-base sm:text-lg text-foreground-muted text-balance">{t.hero.subtitle}</p>
           </div>
 
+          <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-1.5">
+              <h2 className="text-base sm:text-lg font-semibold">{t.about.title}</h2>
+              <p className="text-sm text-foreground-muted text-balance">{t.about.body}</p>
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <h2 className="text-base sm:text-lg font-semibold">{t.problem.title}</h2>
+              <p className="text-sm text-foreground-muted text-balance">{t.problem.body}</p>
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <h2 className="text-base sm:text-lg font-semibold">{t.whatWeDo.title}</h2>
+              <p className="text-sm text-foreground-muted text-balance">{t.whatWeDo.body}</p>
+            </div>
+          </div>
+
           <CheckForm locale={locale} recommendations={recommendations} />
 
           <div className="flex flex-col items-center gap-2 pt-4">
