@@ -1,5 +1,3 @@
-**Allgemeine Geschäftsbedingungen — vorläufige Fassung**
-
 **1. Geltungsbereich**
 Diese Bedingungen gelten für die Nutzung von Leaax (leaax.com), einem kostenlosen Online-Tool zur Prüfung, ob öffentlich zugängliche Informationen (KI-Chat-Freigabelinks, bekannte Datenlecks) mit deiner Eingabe in Verbindung stehen.
 
