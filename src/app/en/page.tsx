@@ -1,14 +1,25 @@
 import type { Metadata } from "next";
 import { Home } from "@/components/Home";
 import { loadRecommendationsContent } from "@/lib/content";
-import { translations } from "@/lib/i18n/translations";
 import { SITE_NAME } from "@/lib/site";
 
-const t = translations.en;
+// SEO title/description are intentionally decoupled from t.tagline /
+// t.hero.subtitle (which drive the on-page hero, kept broad on purpose —
+// see src/components/Home.tsx). These sharpen positioning to the
+// ChatGPT/AI-chat-leak angle for freelancers & small businesses without
+// touching page content.
+// Page title omits the "— Leaax" suffix: the root layout's title template
+// (`%s — ${SITE_NAME}`) appends it, so the rendered <title> reads
+// "ChatGPT & AI Chat Leak Checker — Is Your Chat Public? — Leaax".
+// OG/Twitter titles aren't templated, so they spell out the full string.
+const SEO_TITLE = "ChatGPT & AI Chat Leak Checker — Is Your Chat Public?";
+const SEO_TITLE_FULL = `${SEO_TITLE} — ${SITE_NAME}`;
+const SEO_DESCRIPTION =
+  "Check for free if your ChatGPT or AI chat is publicly exposed — important for freelancers and small businesses. Under a minute, nothing stored. Leaax.";
 
 export const metadata: Metadata = {
-  title: t.tagline,
-  description: t.hero.subtitle,
+  title: SEO_TITLE,
+  description: SEO_DESCRIPTION,
   alternates: {
     canonical: "/en",
     languages: {
@@ -18,8 +29,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: `${SITE_NAME} — ${t.tagline}`,
-    description: t.hero.subtitle,
+    title: SEO_TITLE_FULL,
+    description: SEO_DESCRIPTION,
     url: "/en",
     siteName: SITE_NAME,
     type: "website",
@@ -27,8 +38,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — ${t.tagline}`,
-    description: t.hero.subtitle,
+    title: SEO_TITLE_FULL,
+    description: SEO_DESCRIPTION,
   },
 };
 

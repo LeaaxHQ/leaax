@@ -8,7 +8,7 @@ Leaax — find out where your [li:ks] are
 ![Leaax-Ergebnis mit gefundenem KI-Chat-Freigabelink](screenshots/Leaax-result-de.png)
 
 ## **What's this about?**
-Freelancers, small businesses, and individuals alike trust their data to cloud services and AI tools every day — usually without knowing whether that data is publicly exposed somewhere.
+Freelancers and small businesses increasingly rely on ChatGPT and other AI chat tools for client work — often without realizing a shared chat can end up publicly indexed and searchable, exposing customer data along with it. Individuals checking their own exposure are welcome too.
 
 ## **The problem**
 In recent months, shared AI chat logs (ChatGPT, Claude, and others) have repeatedly turned up in plain Google searches — thousands of private conversations, including personal messages, customer data, internal strategy, and even credentials. Most existing security tools are built for developers and large IT departments. For everyone else who just wants to know "am I affected?", nothing has really fit — until now.
