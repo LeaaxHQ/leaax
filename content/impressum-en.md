@@ -1,5 +1,3 @@
-**Imprint**
-
 **Information according to § 5 TMG / DDG (Germany)**
 
 Simon Derschug  
