@@ -1,5 +1,3 @@
-**Impressum**
-
 **Angaben gemäß § 5 TMG / DDG**
 
 Simon Derschug  
