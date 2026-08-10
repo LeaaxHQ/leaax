@@ -11,9 +11,11 @@ interface HomeProps {
   locale: Locale;
   /** Pre-rendered "what to do now" recommendation HTML, both checks — read server-side by the page for this locale. */
   recommendations: RecommendationsContent;
+  /** Pre-rendered FAQ HTML for this locale — read server-side by the page (see content/faq-*.md, src/lib/content.ts). */
+  faqHtml: string;
 }
 
-export function Home({ locale, recommendations }: HomeProps) {
+export function Home({ locale, recommendations, faqHtml }: HomeProps) {
   const t = translations[locale];
 
   return (
@@ -67,6 +69,15 @@ export function Home({ locale, recommendations }: HomeProps) {
           <div className="w-full rounded-xl border border-border-subtle bg-background-elevated px-5 py-4 text-left">
             <h2 className="text-sm font-semibold">{t.privacy.title}</h2>
             <p className="mt-1 text-sm text-foreground-muted">{t.privacy.body}</p>
+          </div>
+
+          {/* Fixed, editorially-reviewed FAQ (content/faq-*.md) — each
+              question is its own <details> embedded in the Markdown
+              source, same collapsible convention as the "what to do
+              now" recommendations above. */}
+          <div className="w-full text-left">
+            <h2 className="text-base sm:text-lg font-semibold text-center">{t.faq.heading}</h2>
+            <div className="faq-content mt-4" dangerouslySetInnerHTML={{ __html: faqHtml }} />
           </div>
         </div>
       </main>

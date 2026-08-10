@@ -66,6 +66,9 @@ export interface Translation {
     title: string;
     body: string;
   };
+  faq: {
+    heading: string;
+  };
   footer: {
     text: string;
     poweredBy: string;
@@ -161,6 +164,9 @@ export const translations: Record<Locale, Translation> = {
       title: "Your privacy",
       body: "What you type here is only held in memory for the duration of this one check and is discarded immediately after — we never store your search term, email address, or the results.",
     },
+    faq: {
+      heading: "Frequently asked questions",
+    },
     footer: {
       text: "Leaax is an independent security check. Not affiliated with OpenAI, Anthropic, Google, xAI, DeepSeek, or XposedOrNot.",
       poweredBy: "AI-chat search powered by Brave Search API. Breach data powered by XposedOrNot.",
@@ -250,6 +256,9 @@ export const translations: Record<Locale, Translation> = {
     privacy: {
       title: "Deine Privatsphäre",
       body: "Deine Eingabe wird nur für die Dauer dieser einen Prüfung im Arbeitsspeicher gehalten und danach sofort verworfen — wir speichern weder deinen Suchbegriff noch deine E-Mail-Adresse noch die Ergebnisse.",
+    },
+    faq: {
+      heading: "Häufige Fragen",
     },
     footer: {
       text: "Leaax ist ein unabhängiges Sicherheits-Tool. Nicht verbunden mit OpenAI, Anthropic, Google, xAI, DeepSeek oder XposedOrNot.",

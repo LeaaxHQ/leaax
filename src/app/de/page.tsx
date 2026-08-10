@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Home } from "@/components/Home";
-import { loadRecommendationsContent } from "@/lib/content";
+import { loadRecommendationsContent, renderFaqMarkdown } from "@/lib/content";
 import { SITE_NAME } from "@/lib/site";
 
 // SEO title/description are intentionally decoupled from t.tagline /
@@ -51,5 +51,6 @@ export const metadata: Metadata = {
 // "/" picks between them.
 export default function DeHomePage() {
   const recommendations = loadRecommendationsContent();
-  return <Home locale="de" recommendations={recommendations} />;
+  const faqHtml = renderFaqMarkdown("faq-de.md");
+  return <Home locale="de" recommendations={recommendations} faqHtml={faqHtml} />;
 }

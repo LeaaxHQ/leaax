@@ -49,6 +49,20 @@ export function renderRecommendationMarkdown(fileName: RecommendationContentFile
 }
 
 /**
+ * Homepage FAQ section (content/faq-*.md) — same trusted-Markdown /
+ * embedded-<details> convention as the recommendation snippets above,
+ * one <details> per question so each renders as its own collapsible
+ * item (see Home.tsx). Locale is fixed per route (see src/app/de/page.tsx,
+ * src/app/en/page.tsx), so unlike loadRecommendationsContent this only
+ * ever needs one language's HTML per render.
+ */
+export type FaqContentFile = "faq-de.md" | "faq-en.md";
+
+export function renderFaqMarkdown(fileName: FaqContentFile): string {
+  return renderMarkdownFile(fileName);
+}
+
+/**
  * Pre-rendered "what to do now" recommendation HTML for both checks, in
  * both locales — read once on the server (see src/app/page.tsx) and
  * passed down to the client-rendered result UI, since the homepage's
