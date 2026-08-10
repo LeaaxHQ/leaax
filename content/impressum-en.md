@@ -8,5 +8,7 @@ Germany
 **Contact**  
 Email: hello@leaax.com
 
+No VAT is charged pursuant to § 19 UStG (Germany).
+
 **Responsible for the content (§ 18 Section 2 MStV (Germany))**  
 Simon Derschug
