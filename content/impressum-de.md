@@ -7,11 +7,10 @@ Dillinger Str. 34a
 66701 Beckingen  
 Deutschland
 
-**Kontakt**
+**Kontakt**  
 E-Mail: hello@leaax.com
 
 Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.
 
-**Verantwortlich für den Inhalt (§ 18 Abs. 2 MStV)**
-
+**Verantwortlich für den Inhalt (§ 18 Abs. 2 MStV)**  
 Simon Derschug
