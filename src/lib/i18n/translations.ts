@@ -204,7 +204,7 @@ export const translations: Record<Locale, Translation> = {
     },
     form: {
       nameLabel: "Name oder Firma",
-      namePlaceholder: "z. B. Erika Mustermann oder Muster GmbH",
+      namePlaceholder: "z. B. Erika Muster oder Muster GmbH",
       emailLabel: "E-Mail-Adresse",
       emailPlaceholder: "z. B. erika@beispiel.de",
       submit: "Check starten",

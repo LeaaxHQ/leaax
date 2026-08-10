@@ -38,22 +38,22 @@ export function Home({ locale, recommendations, faqHtml }: HomeProps) {
             <p className="text-base sm:text-lg text-foreground-muted text-balance">{t.hero.subtitle}</p>
           </div>
 
-          <div className="flex flex-col gap-6">
-            <div className="flex flex-col gap-1.5">
-              <h2 className="text-base sm:text-lg font-semibold">{t.about.title}</h2>
-              <p className="text-sm text-foreground-muted text-balance">{t.about.body}</p>
+          <CheckForm locale={locale} recommendations={recommendations} />
+
+          <div className="w-full flex flex-col gap-4">
+            <div className="w-full rounded-xl border border-border-subtle bg-background-elevated px-5 py-4 text-left">
+              <h2 className="text-sm font-semibold">{t.about.title}</h2>
+              <p className="mt-1 text-sm text-foreground-muted">{t.about.body}</p>
             </div>
-            <div className="flex flex-col gap-1.5">
-              <h2 className="text-base sm:text-lg font-semibold">{t.problem.title}</h2>
-              <p className="text-sm text-foreground-muted text-balance">{t.problem.body}</p>
+            <div className="w-full rounded-xl border border-border-subtle bg-background-elevated px-5 py-4 text-left">
+              <h2 className="text-sm font-semibold">{t.problem.title}</h2>
+              <p className="mt-1 text-sm text-foreground-muted">{t.problem.body}</p>
             </div>
-            <div className="flex flex-col gap-1.5">
-              <h2 className="text-base sm:text-lg font-semibold">{t.whatWeDo.title}</h2>
-              <p className="text-sm text-foreground-muted text-balance">{t.whatWeDo.body}</p>
+            <div className="w-full rounded-xl border border-border-subtle bg-background-elevated px-5 py-4 text-left">
+              <h2 className="text-sm font-semibold">{t.whatWeDo.title}</h2>
+              <p className="mt-1 text-sm text-foreground-muted">{t.whatWeDo.body}</p>
             </div>
           </div>
-
-          <CheckForm locale={locale} recommendations={recommendations} />
 
           <div className="flex flex-col items-center gap-2 pt-4">
             <h2 className="text-xs uppercase tracking-wide text-foreground-muted">{t.providers.heading}</h2>

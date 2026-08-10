@@ -121,7 +121,7 @@ export function CheckForm({ locale, recommendations }: CheckFormProps) {
     <div className="w-full flex flex-col items-center gap-6">
       {state.kind !== "result" && (
         <form onSubmit={handleSubmit} className="w-full flex flex-col gap-3">
-          <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="flex flex-col gap-3 md:flex-row">
             <div className="flex-1">
               <label htmlFor="query" className="sr-only">
                 {t.form.nameLabel}
