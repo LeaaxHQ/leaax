@@ -1,5 +1,3 @@
-**Privacy Policy**
-
 **1. What we process when you run a check**
 
 When you enter a name, company, or email address, that input is processed only for the duration of the request to run the check. We do not store your input or the result — both are discarded once the request completes.
