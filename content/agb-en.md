@@ -1,5 +1,3 @@
-**Terms and Conditions**
-
 **1. Scope**
 These terms apply to the use of Leaax (leaax.com), a free online tool that checks whether publicly available information (AI chat share links, known data breaches) is linked to your input.
 
