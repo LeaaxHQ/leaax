@@ -22,7 +22,7 @@ export const LEGAL_DOC_STATUS = {
  * LEGAL_DOC_STATUS.terms.isPlaceholder to false at the same time, or
  * later if placeholder content should stay visible for a while first).
  */
-export const TERMS_LINK_VISIBLE = false;
+export const TERMS_LINK_VISIBLE = true;
 
 export const LEGAL_ROUTES = {
   de: {
