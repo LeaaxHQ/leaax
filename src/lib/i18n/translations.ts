@@ -1,7 +1,6 @@
 export type Locale = "en" | "de";
 
 export const LOCALES: Locale[] = ["en", "de"];
-export const DEFAULT_LOCALE: Locale = "en";
 
 export interface Translation {
   brand: string;

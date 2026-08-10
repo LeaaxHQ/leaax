@@ -1,20 +1,20 @@
-"use client";
-
-import { useLanguage } from "@/lib/i18n/context";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { CheckForm } from "@/components/CheckForm";
 import { Footer } from "@/components/Footer";
 import { BrandLogo } from "@/components/BrandLogo";
 import { AI_SHARE_PROVIDERS } from "@/lib/providers";
+import { translations, type Locale } from "@/lib/i18n/translations";
 import type { RecommendationsContent } from "@/lib/content";
 
 interface HomeProps {
-  /** Pre-rendered "what to do now" recommendation HTML, both checks x both locales — read server-side, see src/app/page.tsx. */
+  /** The route's own locale (see src/app/de/page.tsx, src/app/en/page.tsx) — no longer a client-side preference. */
+  locale: Locale;
+  /** Pre-rendered "what to do now" recommendation HTML, both checks — read server-side by the page for this locale. */
   recommendations: RecommendationsContent;
 }
 
-export function Home({ recommendations }: HomeProps) {
-  const { locale, t } = useLanguage();
+export function Home({ locale, recommendations }: HomeProps) {
+  const t = translations[locale];
 
   return (
     <div className="flex-1 flex flex-col">
@@ -26,7 +26,7 @@ export function Home({ recommendations }: HomeProps) {
             <span className="text-xs sm:text-sm text-foreground-muted leading-tight">{t.tagline}</span>
           </div>
         </div>
-        <LanguageSwitcher />
+        <LanguageSwitcher locale={locale} />
       </header>
 
       <main className="flex-1 flex flex-col items-center px-6 py-12 sm:py-20">
@@ -36,7 +36,7 @@ export function Home({ recommendations }: HomeProps) {
             <p className="text-base sm:text-lg text-foreground-muted text-balance">{t.hero.subtitle}</p>
           </div>
 
-          <CheckForm recommendations={recommendations} />
+          <CheckForm locale={locale} recommendations={recommendations} />
 
           <div className="flex flex-col items-center gap-2 pt-4">
             <h2 className="text-xs uppercase tracking-wide text-foreground-muted">{t.providers.heading}</h2>

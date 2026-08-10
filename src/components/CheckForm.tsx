@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { useLanguage } from "@/lib/i18n/context";
-import type { Translation } from "@/lib/i18n/translations";
+import { translations, type Locale, type Translation } from "@/lib/i18n/translations";
 import { CheckBreakdown, OverallResultCard, type DisplayHit } from "@/components/ResultCard";
 import type { CheckHit } from "@/lib/search";
 import type { BreachHit } from "@/lib/breach";
@@ -70,11 +69,12 @@ async function fetchCheck<T>(url: string, body: Record<string, string>): Promise
 }
 
 interface CheckFormProps {
+  locale: Locale;
   recommendations: RecommendationsContent;
 }
 
-export function CheckForm({ recommendations }: CheckFormProps) {
-  const { t, locale } = useLanguage();
+export function CheckForm({ locale, recommendations }: CheckFormProps) {
+  const t = translations[locale];
   const [nameQuery, setNameQuery] = useState("");
   const [email, setEmail] = useState("");
   const [state, setState] = useState<ViewState>({ kind: "idle" });

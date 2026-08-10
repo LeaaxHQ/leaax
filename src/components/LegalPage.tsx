@@ -3,6 +3,12 @@ import { Footer } from "@/components/Footer";
 import { BrandLogo } from "@/components/BrandLogo";
 import type { Locale } from "@/lib/i18n/translations";
 
+// Link straight to this locale's real homepage (/de or /en) rather than
+// "/", which now only redirects based on Accept-Language (see
+// src/proxy.ts) — a reader on the German Impressum shouldn't get bounced
+// to the English homepage just because their browser prefers English.
+const HOMEPAGE_ROUTE: Record<Locale, string> = { en: "/en", de: "/de" };
+
 interface LegalPageProps {
   locale: Locale;
   title: string;
@@ -36,7 +42,7 @@ export function LegalPage({
   return (
     <div className="flex-1 flex flex-col">
       <header className="flex items-center justify-between px-6 py-5 sm:px-10">
-        <Link href="/" className="flex items-center gap-2 text-lg font-bold tracking-tight hover:text-accent">
+        <Link href={HOMEPAGE_ROUTE[locale]} className="flex items-center gap-2 text-lg font-bold tracking-tight hover:text-accent">
           <BrandLogo />
           Leaax
         </Link>
@@ -64,7 +70,7 @@ export function LegalPage({
             {provisionalNotice}
           </p>
 
-          <Link href="/" className="mt-6 inline-block text-sm font-medium text-accent hover:underline">
+          <Link href={HOMEPAGE_ROUTE[locale]} className="mt-6 inline-block text-sm font-medium text-accent hover:underline">
             {backHomeLabel}
           </Link>
         </article>

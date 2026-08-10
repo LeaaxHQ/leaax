@@ -1,13 +1,14 @@
-import { Home } from "@/components/Home";
-import { loadRecommendationsContent } from "@/lib/content";
+import { redirect } from "next/navigation";
 
-// Server component: reads the repo-controlled recommendation Markdown
-// files once per request/build (see src/lib/content.ts) and hands the
-// pre-rendered HTML down to the client-rendered UI. The homepage's
-// language is a client-side preference (see src/lib/i18n/context.tsx),
-// not a routed locale, so both language variants are read here and the
-// client picks the right one at render time.
-export default function Page() {
-  const recommendations = loadRecommendationsContent();
-  return <Home recommendations={recommendations} />;
+/**
+ * "/" has no content of its own. In normal operation, src/proxy.ts
+ * (matcher: "/") already resolves the right locale from Accept-Language
+ * and redirects before this ever renders. This page stays as a
+ * defense-in-depth fallback — e.g. if Proxy is ever bypassed on a given
+ * deploy target — so "/" always resolves to a real page instead of
+ * 404ing. German is the documented fallback locale; see src/proxy.ts for
+ * the actual per-request Accept-Language decision.
+ */
+export default function RootPage() {
+  redirect("/de");
 }
