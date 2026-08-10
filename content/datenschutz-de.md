@@ -1,5 +1,3 @@
-**Datenschutzerklärung**
-
 **1. Was wir verarbeiten, wenn du einen Check durchführst**
 
 Wenn du einen Namen, eine Firma oder eine E-Mail-Adresse eingibst, wird diese Eingabe ausschließlich zur Laufzeit der Anfrage verarbeitet, um die Prüfung durchzuführen. Wir speichern weder deine Eingabe noch das Ergebnis — beides wird nach Abschluss der Anfrage verworfen.
