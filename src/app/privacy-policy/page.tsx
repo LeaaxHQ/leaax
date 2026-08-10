@@ -30,6 +30,7 @@ export default function PrivacyPolicyPage() {
       siblingHref="/datenschutz"
       siblingLabel={translations.en.language.de}
       backHomeLabel={t.backHome}
+      provisionalNotice={t.provisionalNotice}
     />
   );
 }

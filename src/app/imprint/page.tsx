@@ -30,6 +30,7 @@ export default function ImprintPage() {
       siblingHref="/impressum"
       siblingLabel={translations.en.language.de}
       backHomeLabel={t.backHome}
+      provisionalNotice={t.provisionalNotice}
     />
   );
 }

@@ -30,6 +30,7 @@ export default function TermsPage() {
       siblingHref="/agb"
       siblingLabel={translations.en.language.de}
       backHomeLabel={t.backHome}
+      provisionalNotice={t.provisionalNotice}
     />
   );
 }

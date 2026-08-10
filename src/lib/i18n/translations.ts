@@ -69,6 +69,7 @@ export interface Translation {
     privacy: string;
     terms: string;
     placeholderBanner: string;
+    provisionalNotice: string;
     backHome: string;
   };
 }
@@ -147,6 +148,7 @@ export const translations: Record<Locale, Translation> = {
       privacy: "Privacy Policy",
       terms: "Terms",
       placeholderBanner: "[PLACEHOLDER — content coming soon]",
+      provisionalNotice: "This page is provided provisionally and is still being finalized.",
       backHome: "Back to home",
     },
   },
@@ -223,6 +225,7 @@ export const translations: Record<Locale, Translation> = {
       privacy: "Datenschutz",
       terms: "AGB",
       placeholderBanner: "[PLATZHALTER — Inhalt folgt]",
+      provisionalNotice: "Diese Seite wird vorläufig bereitgestellt und noch überarbeitet.",
       backHome: "Zurück zur Startseite",
     },
   },

@@ -13,6 +13,13 @@ interface LegalPageProps {
   siblingHref: string;
   siblingLabel: string;
   backHomeLabel: string;
+  /**
+   * Shown on every legal page regardless of `isPlaceholder` — these are
+   * first drafts pending legal review, not just unfinished placeholders,
+   * so the notice stays even after real text replaces the placeholder
+   * banner.
+   */
+  provisionalNotice: string;
 }
 
 export function LegalPage({
@@ -24,6 +31,7 @@ export function LegalPage({
   siblingHref,
   siblingLabel,
   backHomeLabel,
+  provisionalNotice,
 }: LegalPageProps) {
   return (
     <div className="flex-1 flex flex-col">
@@ -52,7 +60,11 @@ export function LegalPage({
 
           <div className="legal-content mt-8" dangerouslySetInnerHTML={{ __html: contentHtml }} />
 
-          <Link href="/" className="mt-10 inline-block text-sm font-medium text-accent hover:underline">
+          <p className="mt-10 border-t border-border-subtle pt-4 text-xs text-foreground-muted">
+            {provisionalNotice}
+          </p>
+
+          <Link href="/" className="mt-6 inline-block text-sm font-medium text-accent hover:underline">
             {backHomeLabel}
           </Link>
         </article>
