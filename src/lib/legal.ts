@@ -9,9 +9,9 @@
  * content.
  */
 export const LEGAL_DOC_STATUS = {
-  imprint: { isPlaceholder: true },
-  privacy: { isPlaceholder: true },
-  terms: { isPlaceholder: true },
+  imprint: { isPlaceholder: false },
+  privacy: { isPlaceholder: false },
+  terms: { isPlaceholder: false },
 } as const;
 
 /**
