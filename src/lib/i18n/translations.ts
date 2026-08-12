@@ -168,7 +168,7 @@ export const translations: Record<Locale, Translation> = {
       heading: "Frequently asked questions",
     },
     footer: {
-      text: "Leaax is an independent security check. Not affiliated with OpenAI, Anthropic, Google, xAI, DeepSeek, or XposedOrNot.",
+      text: "Leaax is an independent security check. Not affiliated with OpenAI, Anthropic, Google, xAI, or DeepSeek.",
       poweredBy: "AI-chat search powered by Brave Search API. Breach data powered by XposedOrNot.",
     },
     language: { en: "English", de: "Deutsch" },
@@ -261,7 +261,7 @@ export const translations: Record<Locale, Translation> = {
       heading: "Häufige Fragen",
     },
     footer: {
-      text: "Leaax ist ein unabhängiges Sicherheits-Tool. Nicht verbunden mit OpenAI, Anthropic, Google, xAI, DeepSeek oder XposedOrNot.",
+      text: "Leaax ist ein unabhängiges Sicherheits-Tool. Nicht verbunden mit OpenAI, Anthropic, Google, xAI oder DeepSeek.",
       poweredBy: "KI-Chat-Suche unterstützt durch die Brave Search API. Datenleck-Daten von XposedOrNot.",
     },
     language: { en: "English", de: "Deutsch" },
