@@ -33,7 +33,12 @@ function pickLocale(acceptLanguage: string | null): Locale {
 
 export function proxy(request: NextRequest) {
   const locale = pickLocale(request.headers.get("accept-language"));
-  return NextResponse.redirect(new URL(`/${locale}`, request.url));
+  // 308 (permanent), not the 307 default: "/" always sends visitors to the
+  // same locale homepage, so this is a stable mapping, not a per-request
+  // decision. A 307 tells crawlers the redirect might change and to keep
+  // treating "/" as the canonical URL, which is why Search Console was
+  // picking "/" over "/de" despite the canonical tag naming "/de".
+  return NextResponse.redirect(new URL(`/${locale}`, request.url), 308);
 }
 
 // Every other route already has its own real, locale-specific URL (the
