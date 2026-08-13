@@ -8,7 +8,7 @@ Not by default. ChatGPT stores conversations, and if you share a chat via a shar
 <details>
 <summary>How do I know if my ChatGPT chat is public?</summary>
 
-The easiest way is a check like Leaax: enter your name or company, and in under a minute you'll see whether a publicly indexed share link is linked to it — free, with nothing stored.
+The easiest way is with [our Leaax check](#check-form): enter your name or company, and in under a minute you'll see whether a publicly indexed share link is linked to it — free, with nothing stored.
 
 </details>
 
@@ -22,7 +22,7 @@ Chats shared via the "make this chat discoverable" feature got indexed by Google
 <details>
 <summary>Can my employer see my ChatGPT conversations?</summary>
 
-Not directly on a private account — but if a chat was accidentally shared publicly, anyone, including an employer, could technically find it. That's exactly what Leaax checks for you.
+Not directly on a private account — but if a chat was accidentally shared publicly, anyone, including an employer, could technically find it. That's exactly [what Leaax checks for you](#check-form).
 
 </details>
 
@@ -50,6 +50,6 @@ No. Your input is only held in memory for the duration of the check and discarde
 <details>
 <summary>Is my email address in a data breach?</summary>
 
-That's covered separately by Leaax's email check, in addition to the AI chat check.
+That's covered separately by [Leaax's email check](#check-form), in addition to the AI chat check.
 
 </details>

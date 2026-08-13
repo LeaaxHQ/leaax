@@ -62,6 +62,60 @@ export function renderFaqMarkdown(fileName: FaqContentFile): string {
   return renderMarkdownFile(fileName);
 }
 
+/** One parsed FAQ entry — plain text, not HTML (see parseFaqMarkdown). */
+export interface FaqItem {
+  question: string;
+  /** Plain-text answer: any Markdown (links, emphasis, …) is rendered
+   *  then stripped back to text, so a visible link's label survives but
+   *  its markup doesn't — matches how the text actually reads on the
+   *  page. */
+  answer: string;
+}
+
+const FAQ_DETAILS_RE = /<details>\s*<summary>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/g;
+
+/**
+ * Strips the small subset of inline Markdown actually used in
+ * content/faq-*.md answers (links, bold/italic, inline code) down to
+ * plain text, keeping a link's label but dropping its target. Works
+ * directly on the Markdown rather than round-tripping through
+ * marked+HTML-stripping, which avoided two bugs: leftover `&quot;`-style
+ * entities from marked's defensive text escaping, and a stray space
+ * left behind where a tag boundary (e.g. `</a>`) sat directly against
+ * punctuation.
+ */
+function markdownAnswerToPlainText(markdown: string): string {
+  return markdown
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/(\*\*|__)(.+?)\1/g, "$2")
+    .replace(/(\*|_)(.+?)\1/g, "$2")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/**
+ * Parses content/faq-*.md into plain question/answer pairs — used to
+ * build the FAQPage JSON-LD (see src/lib/structuredData.ts) straight
+ * from the same file that renders the visible FAQ (see renderFaqMarkdown
+ * above / Home.tsx), so the structured data can't drift out of sync
+ * with what's actually shown on the page.
+ */
+export function parseFaqMarkdown(fileName: FaqContentFile): FaqItem[] {
+  const filePath = path.join(CONTENT_DIR, fileName);
+  const raw = readFileSync(filePath, "utf8");
+
+  const items: FaqItem[] = [];
+  FAQ_DETAILS_RE.lastIndex = 0;
+  let match: RegExpExecArray | null;
+  while ((match = FAQ_DETAILS_RE.exec(raw))) {
+    const question = match[1].trim();
+    const answerMarkdown = match[2].trim();
+    items.push({ question, answer: markdownAnswerToPlainText(answerMarkdown) });
+  }
+  return items;
+}
+
 /**
  * Pre-rendered "what to do now" recommendation HTML for both checks, in
  * both locales — read once on the server (see src/app/page.tsx) and

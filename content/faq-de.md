@@ -8,7 +8,7 @@ Nicht automatisch. ChatGPT speichert Unterhaltungen standardmäßig, und wenn du
 <details>
 <summary>Wie finde ich heraus, ob mein ChatGPT-Chat öffentlich ist?</summary>
 
-Am einfachsten mit einem Check wie Leaax: Name oder Firma eingeben, in unter einer Minute siehst du, ob ein öffentlich indexierter Freigabelink dazu existiert — kostenlos, ohne Speicherung deiner Eingabe.
+Am einfachsten mit unserem [Leaax-Check](#check-form): Name oder Firma eingeben, in unter einer Minute siehst du, ob ein öffentlich indexierter Freigabelink dazu existiert — kostenlos, ohne Speicherung deiner Eingabe.
 
 </details>
 
@@ -22,7 +22,7 @@ Am einfachsten mit einem Check wie Leaax: Name oder Firma eingeben, in unter ein
 <details>
 <summary>Kann mein Chef meine ChatGPT-Anfragen sehen?</summary>
 
-Bei einem privaten Account grundsätzlich nicht direkt — aber wenn ein Chat versehentlich öffentlich geteilt wurde, kann ihn theoretisch jeder finden, auch der Arbeitgeber. Genau das prüft Leaax für dich.
+Bei einem privaten Account grundsätzlich nicht direkt — aber wenn ein Chat versehentlich öffentlich geteilt wurde, kann ihn theoretisch jeder finden, auch der Arbeitgeber. Genau das [prüft Leaax für dich](#check-form).
 
 </details>
 
@@ -50,6 +50,6 @@ Nein. Deine Eingabe wird nur für die Dauer der Prüfung im Arbeitsspeicher geha
 <details>
 <summary>Ist meine E-Mail-Adresse in einem Datenleck?</summary>
 
-Das lässt sich zusätzlich über den E-Mail-Check auf Leaax prüfen, ergänzend zum KI-Chat-Check.
+Das lässt sich zusätzlich über den [E-Mail-Check](#check-form) auf Leaax prüfen, ergänzend zum KI-Chat-Check.
 
 </details>

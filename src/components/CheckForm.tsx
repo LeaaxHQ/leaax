@@ -118,7 +118,11 @@ export function CheckForm({ locale, recommendations }: CheckFormProps) {
   const canSubmit = nameQuery.trim().length > 0 || email.trim().length > 0;
 
   return (
-    <div className="w-full flex flex-col items-center gap-6">
+    // id target for the "#check-form" anchor links in the FAQ (see
+    // content/faq-*.md) — kept on this always-rendered wrapper rather
+    // than the <form> itself, since the form is swapped out for the
+    // results view once a check has run.
+    <div id="check-form" className="w-full flex flex-col items-center gap-6">
       {state.kind !== "result" && (
         <form onSubmit={handleSubmit} className="w-full flex flex-col gap-3">
           <div className="flex flex-col gap-3 md:flex-row">

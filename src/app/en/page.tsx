@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Home } from "@/components/Home";
 import { loadRecommendationsContent, renderFaqMarkdown } from "@/lib/content";
-import { SITE_NAME } from "@/lib/site";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { buildFaqPageJsonLd, buildSoftwareApplicationJsonLd } from "@/lib/structuredData";
 
 // SEO title/description are intentionally decoupled from t.tagline /
 // t.hero.subtitle (which drive the on-page hero, kept broad on purpose —
@@ -52,5 +53,22 @@ export const metadata: Metadata = {
 export default function EnHomePage() {
   const recommendations = loadRecommendationsContent();
   const faqHtml = renderFaqMarkdown("faq-en.md");
-  return <Home locale="en" recommendations={recommendations} faqHtml={faqHtml} />;
+
+  // Structured data (see src/lib/structuredData.ts): SoftwareApplication
+  // reuses this page's own SEO_DESCRIPTION rather than a separate
+  // hand-written blurb; FAQPage is parsed straight from faq-en.md so it
+  // can't drift from the visible FAQ in Home.tsx.
+  const softwareApplicationJsonLd = buildSoftwareApplicationJsonLd({
+    description: SEO_DESCRIPTION,
+    url: `${SITE_URL}/en`,
+  });
+  const faqPageJsonLd = buildFaqPageJsonLd("faq-en.md");
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: softwareApplicationJsonLd }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqPageJsonLd }} />
+      <Home locale="en" recommendations={recommendations} faqHtml={faqHtml} />
+    </>
+  );
 }
