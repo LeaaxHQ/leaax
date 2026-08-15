@@ -30,7 +30,7 @@ paid subscriptions/ongoing monitoring. Those come later.
 
 Checked providers (public, search-engine-indexed share links only —
 see [`src/lib/providers.ts`](src/lib/providers.ts) to extend):
-ChatGPT, Claude, Gemini, Grok, DeepSeek.
+ChatGPT, Claude, Gemini, Grok, DeepSeek, Microsoft Copilot, Qwen.
 
 ## MVP 2 — scope
 

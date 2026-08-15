@@ -27,9 +27,9 @@ Bei einem privaten Account grundsätzlich nicht direkt — aber wenn ein Chat ve
 </details>
 
 <details>
-<summary>Prüft Leaax auch Claude, Gemini, Grok und DeepSeek?</summary>
+<summary>Prüft Leaax auch Claude, Gemini, Grok, DeepSeek, Microsoft Copilot und Qwen?</summary>
 
-Ja. Leaax prüft öffentlich indexierte Freigabelinks aller fünf großen KI-Chat-Anbieter, nicht nur ChatGPT.
+Ja. Leaax prüft öffentlich indexierte Freigabelinks aller sieben großen KI-Chat-Anbieter, nicht nur ChatGPT.
 
 </details>
 
@@ -51,5 +51,14 @@ Nein. Deine Eingabe wird nur für die Dauer der Prüfung im Arbeitsspeicher geha
 <summary>Ist meine E-Mail-Adresse in einem Datenleck?</summary>
 
 Das lässt sich zusätzlich über den [E-Mail-Check](#check-form) auf Leaax prüfen, ergänzend zum KI-Chat-Check.
+
+Willst du auch prüfen, ob ein bestimmtes Passwort geleakt ist? Nutze dafür [Have I Been Pwned](https://haveibeenpwned.com/Passwords) — dort läuft das direkt bei einem etablierten, spezialisierten Anbieter, nicht bei uns.
+
+</details>
+
+<details>
+<summary>Deckt der E-Mail-Check auch sogenannte Stealer-Logs ab?</summary>
+
+Ja. Die kostenlose Datenbank von XposedOrNot, die Leaax für den E-Mail-Check nutzt, bezieht auch Daten aus Stealer-Logs mit ein — von Infostealer-Malware gestohlene Zugangsdaten, etwa aus der großen ALIEN-TXTBASE-Sammlung. Diese Treffer laufen bei der von uns genutzten Stufe automatisch mit, ohne separate Kosten oder Zugangsstufe.
 
 </details>

@@ -27,9 +27,9 @@ Not directly on a private account — but if a chat was accidentally shared publ
 </details>
 
 <details>
-<summary>Does Leaax check Claude, Gemini, Grok, and DeepSeek too?</summary>
+<summary>Does Leaax check Claude, Gemini, Grok, DeepSeek, Microsoft Copilot, and Qwen too?</summary>
 
-Yes. Leaax checks publicly indexed share links across all five major AI chat providers, not just ChatGPT.
+Yes. Leaax checks publicly indexed share links across all seven major AI chat providers, not just ChatGPT.
 
 </details>
 
@@ -51,5 +51,14 @@ No. Your input is only held in memory for the duration of the check and discarde
 <summary>Is my email address in a data breach?</summary>
 
 That's covered separately by [Leaax's email check](#check-form), in addition to the AI chat check.
+
+Want to check if a specific password has been leaked? Use [Have I Been Pwned](https://haveibeenpwned.com/Passwords) directly — that runs with an established, specialized provider, not with us.
+
+</details>
+
+<details>
+<summary>Does the email check also cover stealer logs?</summary>
+
+Yes. XposedOrNot's free database, which Leaax uses for the email check, also includes data from stealer logs — credentials stolen by infostealer malware, including from the large ALIEN TXTBASE collection. Those hits are included automatically at the tier we use, with no extra cost or higher tier required.
 
 </details>

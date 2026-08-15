@@ -50,6 +50,18 @@ export const AI_SHARE_PROVIDERS: AiShareProvider[] = [
     domain: "chat.deepseek.com",
     pathPrefix: "/share/",
   },
+  {
+    id: "copilot",
+    name: "Microsoft Copilot",
+    domain: "copilot.microsoft.com",
+    pathPrefix: "/chats/",
+  },
+  {
+    id: "qwen",
+    name: "Qwen",
+    domain: "chat.qwen.ai",
+    pathPrefix: "/s/",
+  },
 ];
 
 /**

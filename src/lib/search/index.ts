@@ -45,7 +45,7 @@ function getConfiguredProvider(): WebSearchProvider {
  *
  * One search request per configured provider, run in parallel — Brave
  * Search only reliably applies a `site:` filter when there is exactly
- * one per query, so the 5 providers can't be OR-combined into a single
+ * one per query, so the providers can't be OR-combined into a single
  * request (see buildProviderQuery in src/lib/providers.ts).
  *
  * The raw query string only ever lives in local variables for the

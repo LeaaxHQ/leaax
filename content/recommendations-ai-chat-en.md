@@ -10,6 +10,8 @@
 - **Gemini:** The link is tied to your Gemini Apps Activity — delete the corresponding chat from your Activity, which also removes the public link.
 - **Grok:** Settings → Data Controls → manage/delete shared content there.
 - **DeepSeek:** Settings → Data → Shared Links → Manage → delete the affected link.
+- **Microsoft Copilot:** Settings → Privacy → "Manage shared links" → select the link type → the revoke button (X) on the affected link.
+- **Qwen:** Open your chat settings at chat.qwen.ai and remove the share there.
 
 These menu paths can change — when in doubt, the provider's own help page is the most up-to-date source.
 

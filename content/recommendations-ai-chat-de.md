@@ -10,6 +10,8 @@
 - **Gemini:** Der Link hängt an der Gemini Apps Activity — den zugehörigen Chat aus der Activity löschen, dann verschwindet auch der öffentliche Link.
 - **Grok:** Einstellungen → Data Controls → geteilte Inhalte dort verwalten/löschen.
 - **DeepSeek:** Einstellungen → Data → Shared Links → Manage → betroffenen Link löschen.
+- **Microsoft Copilot:** Einstellungen → Privacy → „Manage shared links“ → Link-Typ auswählen → Widerrufen-Button (X) beim betroffenen Link.
+- **Qwen:** Öffne die Chat-Einstellungen bei chat.qwen.ai und entferne die Freigabe dort.
 
 Diese Menüpfade können sich ändern — im Zweifel ist die Hilfe-Seite des jeweiligen Anbieters die aktuellste Quelle.
 
