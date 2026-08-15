@@ -20,6 +20,23 @@ import type { Locale } from "@/lib/i18n/translations";
  */
 const CONTENT_DIR = path.join(process.cwd(), "content");
 
+// External links (http/https) in content Markdown open in a new tab so
+// Leaax stays open for the user, with the standard target="_blank"
+// safeguard rel="noopener noreferrer" — prevents the new tab from getting
+// a `window.opener` handle back to this page. Internal links (e.g. the
+// "#check-form" anchor) fall through to marked's default same-tab
+// rendering by returning `false` here.
+marked.use({
+  renderer: {
+    link({ href, title, tokens }) {
+      if (!/^https?:\/\//i.test(href)) return false;
+      const label = this.parser.parseInline(tokens);
+      const titleAttr = title ? ` title="${title.replace(/"/g, "&quot;")}"` : "";
+      return `<a href="${href}"${titleAttr} target="_blank" rel="noopener noreferrer">${label}</a>`;
+    },
+  },
+});
+
 function renderMarkdownFile(fileName: string): string {
   const filePath = path.join(CONTENT_DIR, fileName);
   const raw = readFileSync(filePath, "utf8");
