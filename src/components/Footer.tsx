@@ -31,8 +31,6 @@ export function Footer({ locale }: { locale: Locale }) {
         )}
       </nav>
       <p>{t.footer.text}</p>
-      {/* Identical in both locales — a copyright year/name notice doesn't need translation. */}
-      <p>© 2026 Leaax</p>
       <p>
         <a
           href="https://brave.com/search/api/"
@@ -43,6 +41,8 @@ export function Footer({ locale }: { locale: Locale }) {
           {t.footer.poweredBy}
         </a>
       </p>
+      {/* Identical in both locales — a copyright year/name notice doesn't need translation. */}
+      <p>© 2026 Leaax</p>
     </footer>
   );
 }
