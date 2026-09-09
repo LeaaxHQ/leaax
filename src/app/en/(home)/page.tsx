@@ -16,7 +16,7 @@ import { buildFaqPageJsonLd, buildSoftwareApplicationJsonLd } from "@/lib/struct
 const SEO_TITLE = "ChatGPT & AI Chat Leak Checker — Is Your Chat Public?";
 const SEO_TITLE_FULL = `${SEO_TITLE} — ${SITE_NAME}`;
 const SEO_DESCRIPTION =
-  "Check for free if your ChatGPT or AI chat is publicly exposed — important for freelancers and small businesses. Under a minute, nothing stored. Leaax.";
+  "Leaax is the data leak scanner for ChatGPT & AI chats: check for free if your chat is publicly exposed — for freelancers and small businesses. Under a minute, nothing stored.";
 
 export const metadata: Metadata = {
   title: SEO_TITLE,
