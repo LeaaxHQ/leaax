@@ -42,7 +42,9 @@ export function Footer({ locale }: { locale: Locale }) {
         </a>
       </p>
       {/* Identical in both locales — a copyright year/name notice doesn't need translation. */}
-      <p>© 2026 Leaax</p>
+      <p>
+        © 2026 Leaax · Simon Derschug. {locale === "de" ? "Alle Rechte vorbehalten." : "All rights reserved."}
+      </p>
     </footer>
   );
 }
